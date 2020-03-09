@@ -1,28 +1,28 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('privilages', {
+	return sequelize.define('user_has_privilages', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true
 		},
-		title: {
-			type: DataTypes.STRING(255),
-			allowNull: true
-		},
-		url: {
-			type: DataTypes.STRING(255),
-			allowNull: true
-		},
-		icon: {
-			type: DataTypes.STRING(255),
-			allowNull: true
-		},
-		status: {
+		userid: {
 			type: DataTypes.INTEGER(11),
-			allowNull: true
+			allowNull: true,
+			references: {
+				model: 'user',
+				key: 'id'
+			}
+		},
+		privid: {
+			type: DataTypes.INTEGER(11),
+			allowNull: true,
+			references: {
+				model: 'privilages',
+				key: 'id'
+			}
 		},
 		createdAt: {
 			type: DataTypes.DATE,
@@ -33,6 +33,6 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		}
 	}, {
-		tableName: 'privilages'
+		tableName: 'user_has_privilages'
 	});
 };
