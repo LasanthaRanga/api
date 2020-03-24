@@ -7,8 +7,8 @@ const sequlize = require('./util/sequl');
 
 const userRouter = require('./router/user');
 const tempStudentRouter = require('./router/temp_student');
-const courseRouter = require('./router/corse');
-const addressRouter = require('./router/address');
+
+
 
 
 
@@ -23,8 +23,6 @@ app.use(bodyParser.json());
 
 app.use('/user', userRouter);
 app.use('/tempStudent', tempStudentRouter);
-app.use('/course', courseRouter);
-app.use('/address', addressRouter);
 
 
 app.use((req, res, next) => {

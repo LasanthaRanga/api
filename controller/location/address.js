@@ -1,12 +1,13 @@
 const con = require('../../util/sequl');
-const course = con.import('../../models/course');
-const student = con.import('../../models/temp_student');
-const status = con.import('../../models/status_student');
+
+const city = con.import('../../models/city');
+const distric = con.import('../../models/distric');
+
 const db = require('../../util/con');
 
-exports.getCourse = (req, res, next) => {
-    try {      
-        db.execute("SELECT course.idCourse,course.course_name FROM course WHERE course.isactive=1",
+exports.getDistrics = (req, res, next) => {
+    try {
+        db.execute("SELECT distric.iddistric,distric.distric_english FROM distric ORDER BY distric.distric_english ASC",
             (error, rows, fildData) => {
                 if (!error) {
                     res.send(rows);
@@ -18,9 +19,10 @@ exports.getCourse = (req, res, next) => {
     }
 }
 
-exports.getStatus = (req, res, next) => {
-    try {      
-        db.execute("SELECT status_student.idStatus,status_student.status_name FROM status_student",
+exports.getCitys = (req, res, next) => {
+
+    try {
+        db.execute("SELECT city.idcity,city.city_english FROM city WHERE city.distric_iddistric='" + req.body.id + "' ORDER BY city.city_english ASC",
             (error, rows, fildData) => {
                 if (!error) {
                     res.send(rows);
@@ -31,4 +33,3 @@ exports.getStatus = (req, res, next) => {
         res.status(500).send(error);
     }
 }
-
