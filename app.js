@@ -3,8 +3,12 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const sequlize = require('./util/sequl');
 
+
+
+app.use(cors());
+
+const sequlize = require('./util/sequl');
 const userRouter = require('./router/user');
 const tempStudentRouter = require('./router/temp_student');
 const courseRouter = require('./router/corse');
@@ -14,7 +18,6 @@ const addressRouter = require('./router/address');
 
 
 
-app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
